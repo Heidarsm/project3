@@ -1,0 +1,49 @@
+@startuml Part3
+scale 2
+'left to right direction '
+' skinparam packageStyle rect
+' skinparam linetype ortho 
+
+rectangle "Part 3"{
+
+
+Initialization -down-> PreOperational: Boot up
+PreOperational -right-> Stopped: Fault
+PreOperational <-left- Stopped: Fault reset & prevState 3
+PreOperational -down-> Operational: StepForward
+Operational -up-> PreOperational: StepBackward
+Operational -right->Stopped: Fault
+Stopped -left->Operational: Fault reset & prevState 2
+PreOperational -up-> Initialization: Restart
+Operational -up-> Initialization: Restart
+Stopped -up-> Initialization: Restart
+
+class Initialization{
+    #Start device
+    #Setup variables
+
+}
+
+class PreOperational{
+    #Waiting for a input from user
+    #LED is blinking at 1Hz to signify this state()
+}
+class Stopped{
+    #Fault detection that autonomously triggers transition 
+    #LED is blinking at 2Hz to signify this state()
+}
+class Operational{
+    #Input/ Output behaviour is active
+    #LED is on to signify this state()
+}
+
+
+' rectangle "State Machine for part 1"{
+
+'     [Operational ] <- [Initialization ]
+
+'     [Initialization ] <- [Operational ]
+}
+
+@endumld
+

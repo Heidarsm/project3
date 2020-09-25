@@ -1,0 +1,31 @@
+@startuml Part2
+scale 2
+'left to right direction 
+skinparam packageStyle rect
+'skinparam linetype ortho 
+
+rectangle "Part 2"{
+Initialization -down-> PreOperational: Boot up
+PreOperational -up-> Initialization: Restart
+PreOperational -down-> Operational: StepForward
+Operational -up-> PreOperational: StepBackward
+Initialization <- Operational: Restart
+
+class Initialization{
+    #Start device
+    #Setup variables
+}
+
+class PreOperational{
+    #Waiting for a input from user
+    #LED is blinking to signify this state()
+}
+class Operational{
+    #Input/ Output behaviour is active
+    #LED is on to signify this state()
+}
+
+}
+
+@endumld
+

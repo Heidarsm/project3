@@ -1,0 +1,23 @@
+@startuml Part1
+scale 2
+'left to right direction 
+skinparam packageStyle rect
+'skinparam linetype ortho 
+
+rectangle "Part 1"{
+Operational <-down- Initialization:Boot up
+Operational -up-> Initialization:Restart
+class Operational{
+    #Input/ Output behaviour is active
+    #LED is on to signify this state()
+}
+
+class Initialization{
+    #Start device
+    #Setup variables
+}
+
+}
+
+@endumld
+
